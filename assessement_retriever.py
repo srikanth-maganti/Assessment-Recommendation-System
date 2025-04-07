@@ -5,8 +5,7 @@ from sentence_transformers import SentenceTransformer
 # Limit to 1 worker thread to avoid Render CPU/thread limits
 settings = Settings(
     persist_directory="./chroma_db",
-    anonymized_telemetry=False,
-    num_workers=1
+    anonymized_telemetry=False
 )
 
 db_client = chromadb.PersistentClient(settings)
