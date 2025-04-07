@@ -17,7 +17,7 @@ from most_accurate import find_most_accurate
 # Streamlit UI
 st.set_page_config(page_title="Assessment Finder", layout="wide")
 
-st.title("🧠 SHL Assessment Finder")
+st.title("SHL Assessment Recommendation Engine")
 st.markdown("Enter a job title or description and find relevant SHL assessments.")
 
 job_query = st.text_area("🔍 Job Title / Description", height=150, placeholder="e.g., I’m hiring a backend developer who knows Python and system design.")
