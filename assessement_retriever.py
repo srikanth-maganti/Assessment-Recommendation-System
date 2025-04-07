@@ -1,7 +1,6 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
-from gen_model import run
-# Initialize ChromaDB client and collection
+
 db_client = chromadb.PersistentClient(path="./chroma_db")
 collection = db_client.get_or_create_collection(name="assessments")
 

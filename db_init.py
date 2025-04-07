@@ -2,8 +2,7 @@ import pandas as pd
 import chromadb
 import os
 from sentence_transformers import SentenceTransformer
-from summarization import summarizer
-# Load CSV file
+
 file_path = os.path.abspath("products_catalogue.csv")
 df=pd.read_csv(file_path,encoding='ISO-8859-1')
 

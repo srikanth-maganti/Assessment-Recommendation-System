@@ -7,10 +7,13 @@ from most_accurate import  find_most_accurate  # Your final LLM filter logic
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "Welcome to SHL Assessment Recommendation Engine!"}
+
 # Request model
 class QueryRequest(BaseModel):
-    query: str
-
+    job_query: str
 # Response model
 class Assessment(BaseModel):
     Assessment_Name: str
@@ -20,9 +23,9 @@ class Assessment(BaseModel):
     Adaptive_Testing: str
     Language: str
 
-@app.post("/search", response_model=List[Assessment])
+@app.post("/summarize", response_model=List[Assessment])
 def search_assessments(data: QueryRequest):
-    query = data.query
+    query = data.job_query
     matches = find_matches(query)  # embedding-based shortlist
     best_matches = find_most_accurate(matches, query)  # LLM-ranked top N
 
