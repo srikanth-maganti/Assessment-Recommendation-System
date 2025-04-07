@@ -1,8 +1,16 @@
 import chromadb
+from chromadb.config import Settings
 from sentence_transformers import SentenceTransformer
 
-db_client = chromadb.PersistentClient(path="./chroma_db")
+CHROMA_SERVER_URL = "https://chroma-server-umbu.onrender.com"
+
+
+# Connect to ChromaDB server hosted on Render
+db_client = chromadb.HttpClient(host=CHROMA_SERVER_URL)
+
+# Get or create collection
 collection = db_client.get_or_create_collection(name="assessments")
+
 
 # Load embedding model
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
@@ -36,10 +44,3 @@ def find_matches(job_summary, top_k=20):
         matches.append(match)
 
     return matches
-
-
-
-
-
-
-
