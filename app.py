@@ -37,10 +37,10 @@ if search:
             for match in matches:
                 st.markdown(f"""
                     <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid #ccc; border-radius: 10px;">
-                        <h4><a href="{match['Link']}" target="_blank">{match['Assessment Name']}</a></h4>
+                        <h4><a href="{match['Link']}" target="_blank">{match['Assessment_Name']}</a></h4>
                         <p><b>Duration:</b> {match['Duration']}<br>
-                        <b>Remote Testing:</b> {match['Remote Testing']}<br>
-                        <b>Adaptive Testing:</b> {match['Adaptive Testing']}<br>
+                        <b>Remote Testing:</b> {match['Remote_Testing']}<br>
+                        <b>Adaptive Testing:</b> {match['Adaptive_Testing']}<br>
                         <b>Language:</b> {match['Language']}</p>
                     </div>
                 """, unsafe_allow_html=True)

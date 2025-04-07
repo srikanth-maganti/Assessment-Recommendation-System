@@ -47,11 +47,11 @@ Now return the **top 1 to 10 assessments** in JSON list format like this:
 
 [
   {{
-    "Assessment Name": "...",
+    "Assessment_Name": "...",
     "Link": "...",
     "Duration": "...",
-    "Remote Testing": "...",
-    "Adaptive Testing": "...",
+    "Remote_Testing": "...",
+    "Adaptive_Testing": "...",
     "Language": "..."
   }},
   ...
@@ -62,6 +62,4 @@ Only return the JSON list. Do not include explanation.
     # Send the prompt to the LLM
     response = run(prompt)
     top_matches = safe_json_parse(response)
-
-    print("Top 10 Matches:", top_matches)
     return top_matches
