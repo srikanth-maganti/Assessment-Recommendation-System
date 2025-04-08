@@ -1,15 +1,9 @@
 import chromadb
-from chromadb.config import Settings
 from sentence_transformers import SentenceTransformer
 
-# Limit to 1 worker thread to avoid Render CPU/thread limits
-settings = Settings(
-    persist_directory="./chroma_db",
-    anonymized_telemetry=False
-)
 
-db_client = chromadb.PersistentClient(settings)
-# db_client = chromadb.PersistentClient(path="./chroma_db")
+
+db_client = chromadb.PersistentClient(path="./chroma_db")
 
 
 collection = db_client.get_or_create_collection(name="assessments")
