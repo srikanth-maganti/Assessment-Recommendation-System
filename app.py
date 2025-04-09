@@ -2,12 +2,10 @@ import streamlit as st
 from summarization import summarizer
 from most_accurate import find_most_accurate
 from assessment_api import find_matches
-# from huggingface_hub import login
 import torch
 
 st.set_page_config(page_title="Assessment Finder", layout="wide")
-# import os
-# login(os.environ["HUGGINGFACEHUB_API_TOKEN"])
+
 
 torch.classes.__path__ = [] 
 
