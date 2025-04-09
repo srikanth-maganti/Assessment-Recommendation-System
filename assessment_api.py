@@ -1,5 +1,6 @@
 import os
 import pinecone
+import streamlit as st
 from pinecone import Pinecone, ServerlessSpec
 from sentence_transformers import SentenceTransformer
 
@@ -7,14 +8,21 @@ from sentence_transformers import SentenceTransformer
 PINECONE_REGION = "us-east-1"  # or your actual region
 INDEX_NAME = "assessments-index"  # your Pinecone index name
 
-# Connect to Pinecone
+@st.cache_resource
+def get_embedder():
+    try:
+        return SentenceTransformer("all-MiniLM-L6-v2", use_auth_token=os.environ["HUGGINGFACEHUB_API_TOKEN"])
+    except Exception as e:
+        st.error(f"⚠️ Error loading model: {e}")
+        return None
+
+embedder = get_embedder()
 
 pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
 
 index = pc.Index(INDEX_NAME)
 
 
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
 
 def embed_text(text):
