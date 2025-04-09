@@ -18,7 +18,7 @@ def find_most_accurate(matches, job_query):
     prompt = f"""
 You are an expert recruiter AI. A user has provided a job query, and we’ve already shortlisted some relevant assessments based on embedding similarity.
 
-Your task: From the provided list, **rank and return the top 10 most relevant assessments** for this job query based on the following parameters:
+Your task: From the provided list, **rank and return the top 1 to 10 most relevant assessments** for this job query based on the following parameters:
 - Match to job description or skill requirements
 - Suitability of duration
 - Match to job level
@@ -44,13 +44,13 @@ Assessment {i+1}:
 """
 
     prompt += """
-Now return the **top 1 to 10 assessments** in JSON list format like this:
+Now return the **top 1 to 10 assessments which are most relavant assessments ** in JSON list format like this:
 
 [
   {{
     "Assessment_Name": "...",
     "Link": "...",
-    "Duration": "...",
+    "Duration": "...min",
     "Remote_Testing": "...",
     "Adaptive_Testing": "...",
     "Language": "..."

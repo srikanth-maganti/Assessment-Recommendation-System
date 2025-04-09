@@ -1,20 +1,8 @@
-__import__("pysqlite3")
-import sys
-sys.modules["sqlite3"]=sys.modules.pop("pysqlite3")
-
-import os
-from huggingface_hub import login
-
-login(os.environ["HUGGINGFACEHUB_API_TOKEN"])
-
 import streamlit as st
-import torch
-torch.classes.__path__ = []
-
-from summarization import summarize
-from assessement_retriever import find_matches
+from summarization import summarizer
 from most_accurate import find_most_accurate
-# Streamlit UI
+from assessment_api import find_matches
+
 st.set_page_config(page_title="Assessment Finder", layout="wide")
 
 st.title("SHL Assessment Recommendation Engine")
@@ -26,7 +14,7 @@ search = st.button("➡️ Search")
 if search:
     if job_query.strip():
         with st.spinner("Summarizing and finding matches..."):
-            summary = summarize(job_query)
+            summary = summarizer(job_query)
             matches = find_matches(summary)
 
             matches=find_most_accurate(matches,job_query)
@@ -34,16 +22,10 @@ if search:
         if matches:
             st.success(f"Found {len(matches)} related assessment(s) for your input.")
 
-            for match in matches:
-                st.markdown(f"""
-                    <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid #ccc; border-radius: 10px;">
-                        <h4><a href="{match['Link']}" target="_blank">{match['Assessment_Name']}</a></h4>
-                        <p><b>Duration:</b> {match['Duration']}<br>
-                        <b>Remote Testing:</b> {match['Remote_Testing']}<br>
-                        <b>Adaptive Testing:</b> {match['Adaptive_Testing']}<br>
-                        <b>Language:</b> {match['Language']}</p>
-                    </div>
-                """, unsafe_allow_html=True)
+            import pandas as pd
+            df = pd.DataFrame(matches)
+            df = df[["Assessment_Name", "Link","Duration", "Remote_Testing", "Adaptive_Testing", "Language"]]
+            st.dataframe(df, use_container_width=True)
         else:
             st.warning("No close matches found. Try using a more general or different job description.")
     else:

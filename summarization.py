@@ -1,7 +1,7 @@
 from gen_model import run
 
 
-def summarize(job_query):
+def summarizer(job_query):
     prompt= f"""
     You are an AI that summarizes assessment details in the style of natural job requirement queries.
 
