@@ -3,6 +3,7 @@ from summarization import summarizer
 from most_accurate import find_most_accurate
 from assessment_api import find_matches
 from huggingface_hub import login
+import os
 
 login(os.environ["HUGGINGFACEHUB_API_TOKEN"])
 
