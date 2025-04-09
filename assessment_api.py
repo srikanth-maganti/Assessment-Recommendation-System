@@ -9,8 +9,8 @@ INDEX_NAME = "assessments-index"  # your Pinecone index name
 
 # Connect to Pinecone
 
-# pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
-pc = Pinecone(api_key="pcsk_7HgBCG_8EagDAcbKQTaud6No3DQcY776g1Y4vFgAR5siSX6NLMqRLJfpB5FSyiTJh8taLe")
+pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
+
 index = pc.Index(INDEX_NAME)
 
 

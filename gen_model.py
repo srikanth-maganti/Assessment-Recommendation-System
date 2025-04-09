@@ -1,6 +1,6 @@
 import google.generativeai as genai
 import os
-genai.configure(api_key="AIzaSyCawkOxjzYI0X79jFiLaDjIP8G19bIHd-s")
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 
 # Function to generate a response
