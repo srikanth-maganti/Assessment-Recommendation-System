@@ -2,6 +2,9 @@ import streamlit as st
 from summarization import summarizer
 from most_accurate import find_most_accurate
 from assessment_api import find_matches
+from huggingface_hub import login
+
+login(token=st.secrets["HUGGINGFACEHUB_API_TOKEN"])
 
 st.set_page_config(page_title="Assessment Finder", layout="wide")
 
