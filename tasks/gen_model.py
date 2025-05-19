@@ -1,6 +1,8 @@
 import google.generativeai as genai
 import os
-genai.configure(api_key=os.environ["GEMINI_API_TOKEN"])
+from dotenv import load_dotenv
+load_dotenv()
+genai.configure(api_key=os.getenv("GEMINI_API_TOKEN"))
 
 
 # Function to generate a response

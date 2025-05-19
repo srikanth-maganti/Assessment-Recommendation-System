@@ -2,13 +2,15 @@ import os
 import pinecone
 from pinecone import Pinecone, ServerlessSpec
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv, dotenv_values 
 
+load_dotenv() 
 
 PINECONE_REGION = "us-east-1"
 INDEX_NAME = "assessments-index"
 
 
-pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index(INDEX_NAME)
 
 

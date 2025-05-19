@@ -1,4 +1,4 @@
-from gen_model import run
+from tasks.gen_model import run
 import json
 
 
