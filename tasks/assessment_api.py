@@ -14,7 +14,7 @@ pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index(INDEX_NAME)
 
 
-embedder =SentenceTransformer('all-MiniLM-L6-v2')
+embedder =SentenceTransformer('./local_model')
 
 
 def embed_text(text):
